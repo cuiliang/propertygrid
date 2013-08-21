@@ -1,0 +1,18 @@
+<div>
+	<div ng-repeat="item in source">
+		
+		<div class="controls" ng-switch on="item.type">
+			<label for="item.name">{{item.name}}</label>
+			<div ng-switch-when="group">
+				SHIT
+			</div>		
+
+			<div ng-switch-default>
+				<input ng-model="item.value"  type="{{item.type}}" />
+			</div>
+		</div>
+
+	
+
+	</div>
+</div>

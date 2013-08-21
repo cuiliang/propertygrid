@@ -1,0 +1,68 @@
+<html lang="de" ng-app="gronic">
+	<head>
+		<meta charset="UTF-8">
+		<title>Test</title>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+	</head>
+	<body>
+		<div ng-controller="testCtrl">
+			<settings source="settings"></settings>
+			
+		</div>
+	</body>
+	<script>
+			function testCtrl($scope, $http){
+
+				// $scope.settings = { test : 3}
+
+				$scope.foo = [{name : 'otto', value : '5'}];
+
+				$scope.settings = [
+					{name : "Foo", value : "xxx"},
+					{name : "Bar" , value : "xxxx"},
+					{	name : "Kudo" ,
+						type : "group" ,  
+						value :  [
+							{name  :"Sub1" , value : 2323}
+						]
+					}
+				]
+			}	
+
+
+	// angular.module('gronic', [])
+	//   .directive('settings', function($timeout, dateFilter) {
+	// 	return function(scope, element, attrs) {
+	// 		element.text("OPPP");   
+	// 	}
+	// });
+
+
+
+	var myModule = angular.module("gronic", []);
+	 
+	myModule.directive('settings', function factory() {
+	  var directiveDefinitionObject = {
+		priority: 0,
+		templateUrl: 'settings.html', // or // function(tElement, tAttrs) { ... },
+		replace: true,
+		restrict: 'E',
+		scope:  { source : "=source"},
+		controller: function($scope , $element, $attrs, $transclude) { 
+				$scope.nestedFoo = [{name : "nested1", value : 1}, {name : "nested2", value : 2}]
+		},
+		link : function($scope, $element, $attrs){
+			console.log("Foooo");
+
+		}
+
+	  };
+
+	  return directiveDefinitionObject;
+	});
+
+	</script>
+</html>
